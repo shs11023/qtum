@@ -953,6 +953,7 @@ void BitcoinGUI::setNumBlocks(int count, const QDateTime& blockDate, double nVer
             walletFrame->showOutOfSyncWarning(false);
             modalOverlay->showHide(true, true);
         }
+        fBatchProcessingMode = false;
 #endif // ENABLE_WALLET
 
         progressBarLabel->setVisible(false);

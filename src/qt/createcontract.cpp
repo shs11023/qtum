@@ -15,6 +15,7 @@
 #include "contractabi.h"
 #include "tabbarinfo.h"
 #include "contractresult.h"
+#include "wallet/wallet.h"
 
 #include <QRegularExpressionValidator>
 
@@ -227,6 +228,10 @@ void CreateContract::on_createContract_clicked()
 
 void CreateContract::on_numBlocksChanged()
 {
+    // Skip gui event in case of batch processing
+    if(fBatchProcessingMode)
+        return;
+
     if(m_clientModel)
     {
         uint64_t blockGasLimit = 0;

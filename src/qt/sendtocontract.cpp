@@ -17,6 +17,7 @@
 #include "contractbookpage.h"
 #include "editcontractinfodialog.h"
 #include "contracttablemodel.h"
+#include "wallet/wallet.h"
 
 #include <QClipboard>
 
@@ -249,6 +250,10 @@ void SendToContract::on_sendToContract_clicked()
 
 void SendToContract::on_numBlocksChanged()
 {
+    // Skip gui event in case of batch processing
+    if(fBatchProcessingMode)
+        return;
+
     if(m_clientModel)
     {
         uint64_t blockGasLimit = 0;

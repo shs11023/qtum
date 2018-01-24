@@ -8,6 +8,7 @@
 #include "guiutil.h"
 
 #include "chainparams.h"
+#include "wallet/wallet.h"
 
 #include <QResizeEvent>
 #include <QPropertyAnimation>
@@ -71,6 +72,7 @@ void ModalOverlay::setKnownBestHeight(int count, const QDateTime& blockDate)
     if (count > bestHeaderHeight) {
         bestHeaderHeight = count;
         bestHeaderDate = blockDate;
+        fBatchProcessingMode = true;
     }
 }
 

@@ -146,6 +146,10 @@ void AddTokenPage::on_addressChanged()
 
 void AddTokenPage::on_numBlocksChanged()
 {
+    // Skip gui event in case of batch processing
+    if(fBatchProcessingMode)
+        return;
+
     ui->lineEditSenderAddress->on_refresh();
 }
 

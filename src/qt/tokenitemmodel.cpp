@@ -437,6 +437,10 @@ void TokenItemModel::updateToken(const QString &hash, int status, bool showToken
 
 void TokenItemModel::checkTokenBalanceChanged()
 {
+    // Skip gui event in case of batch processing
+    if(fBatchProcessingMode)
+        return;
+
     if(!priv && !tokenAbi)
         return;
 
